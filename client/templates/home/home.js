@@ -4,7 +4,8 @@ Template.home.events({
 
     var shortUrl = Meteor.call('longToShort', longUrl, function(err, shortUrl) {
       if (err) {
-        // TODO: handle error
+        // TODO: better way to handle error
+        console.log(err.message);
       } else {
         FlashMessages.sendSuccess('Your url is shortened: ' + shortUrl);
       }
