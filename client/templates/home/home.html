@@ -1,36 +1,65 @@
 <template name="home">
   <!-- shorten url -->
   <div class="container">
-    <form class="shorten-url-form">
-      <div class="form-group">
-        <input type="text" class="form-control" id="longUrl" name="longUrl" placeholder="Paste your long URL here">
-      </div>
-      <button type="submit" class="btn btn-primary">Shorten URL</button>
-    </form>
+    <div class="col-md-9">
+      <form class="shorten-url-form">
+        <h3>Shorten a url now</h3>
+        <div class="form-group">
+          <input type="text" class="form-control" id="longUrl" name="longUrl" placeholder="Paste your long URL here">
+        </div>
+        {{#if showShortenUrl}}
+        <div class="getShortUrl">
+          <p class="getShortUrlMessage">{{showShortenUrl}}</p>
+        </div>
+        {{/if}}
+        <button type="submit" class="btn btn-primary">Shorten URL</button>
+      </form>
+      <form class="get-long-url-form">
+        <h3>Preview your redirection</h3>
+        <div class="form-group">
+          <input type="text" class="form-control" id="shortUrl" name="shortUrl" placeholder="Paste your short URL here">
+        </div>
+        {{#if showGetOriginalUrl}}
+        <div class="getLongUrl">
+          <p class="getLongUrlMessage">{{showGetOriginalUrl}}</p>
+        </div>
+        {{/if}}
+        <button type="submit" class="btn btn-primary">Preview Long URL</button>
+      </form>
+      <!-- urls -->
+      <hr>
+      <table class="table table-hover">
+        {{#if urls}}
+        <thead>
+          <tr>
+            <th>Long Url</th>
+            <th>CreatedAt</th>
+            <th>Short Url</th>
+          </tr>
+        </thead>
+        {{/if}}
+        {{#each urls}}
+        <tbody>
+          <tr>
+            <td>
+              <a href="{{longUrl}}">
+                {{longUrl}}
+              </a>
+            </td>
+            <td>{{formatDate createdAt}}</td>
+            <td>
+              <a href="{{appendToBaseUrl _id}}">
+                {{appendToBaseUrl _id}}
+              </a>
+            </td>
+          </tr>
+        </tbody>
+        {{else}}
+        <tr>
+          <td rowspan="3">You have no shortened Urls</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
   </div>
-  <!-- urls -->
-  <table class="table table-hover">
-    {{#if urls}}
-      <thead>
-        <tr>
-          <th>Long Url</th>
-          <th>CreatedAt</th>
-          <th>Short Url</th>
-        </tr>
-      </thead>
-    {{/if}}
-    {{#each urls}}
-      <tbody>
-        <tr>
-          <td>{{longUrl}}</td>
-          <td>{{formatDate createdAt}}</td>
-          <td>{{_id}}</td>
-        </tr>
-      </tbody>
-    {{else}}
-      <tr>
-        <td rowspan="3">You have no shortened Urls</td>
-      </tr>
-    {{/each}}
-  </table>
 </template>

@@ -1,3 +1,7 @@
-.shorten-url-form {
+.shorten-url-form, .get-long-url-form {
   padding: 20px;
+}
+
+.panel-register {
+  display: none;
 }

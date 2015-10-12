@@ -24,3 +24,5 @@ twbs:bootstrap
 mrt:flash-messages
 momentjs:moment
 aldeed:collection2
+accounts-base
+accounts-password

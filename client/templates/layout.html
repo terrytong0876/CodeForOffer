@@ -3,9 +3,15 @@
 </body>
 
 <template name="layout">
+  {{> navbar}}
   <div class="container">
-    {{> flashMessages}}
-    {{> yield}}
+    <div class="col-md-3">
+      {{> login}}
+    </div>
+    <div class="col-md-9">
+      {{> flashMessages}}
+      {{> yield}}
+    </div>
   </div>
   {{> footer}}
 </template>
